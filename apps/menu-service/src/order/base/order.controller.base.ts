@@ -38,6 +38,9 @@ export class OrderControllerBase {
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Order })
+  @swagger.ApiBody({
+    type: OrderCreateInput,
+  })
   @nestAccessControl.UseRoles({
     resource: "Order",
     action: "create",
@@ -181,6 +184,9 @@ export class OrderControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Order })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: OrderUpdateInput,
+  })
   @nestAccessControl.UseRoles({
     resource: "Order",
     action: "update",
