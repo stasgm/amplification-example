@@ -41,6 +41,9 @@ export class ProductControllerBase {
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Product })
+  @swagger.ApiBody({
+    type: ProductCreateInput,
+  })
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "create",
@@ -128,6 +131,9 @@ export class ProductControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Product })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: ProductUpdateInput,
+  })
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",

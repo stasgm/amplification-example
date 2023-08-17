@@ -41,6 +41,9 @@ export class AddressControllerBase {
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Address })
+  @swagger.ApiBody({
+    type: AddressCreateInput,
+  })
   @nestAccessControl.UseRoles({
     resource: "Address",
     action: "create",
@@ -134,6 +137,9 @@ export class AddressControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Address })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: AddressUpdateInput,
+  })
   @nestAccessControl.UseRoles({
     resource: "Address",
     action: "update",
